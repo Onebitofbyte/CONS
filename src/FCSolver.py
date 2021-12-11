@@ -1,4 +1,4 @@
-from CSPVariable import CSPVariables
+from CSPVariable import CSPVariable
 
-varibles = CSPVariables(6,6)
+varibles = CSPVariable(6,6)
 print(varibles)

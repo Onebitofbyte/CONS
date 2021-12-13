@@ -5,6 +5,12 @@ class CSP: # full csp with variabless, domain, and constraints
 		self.cons = cons       # lisf of lists mapping queen to list of constraints (first item in list if the pair of queens)
 		self.assignment = assignment       # the row the queen is assigned to
 
+	def assign(self, key, integer):
+		self.assignment[key] = integer
+
+	def unassign(self, integer):
+		self.assignment[key] = integer
+
 def CSPCallFunction(nqueens):
 	doms = {}    # domains of the queens
 	assignment = {}    # roassignment the queens will be placed in
@@ -13,7 +19,7 @@ def CSPCallFunction(nqueens):
 
 	for i in range(0, nqueens): # set list of domains for each queen
 		doms.update({i : [x for x in range(0,nqueens)]})
-	for i in range(0, nqueens+1): # set all row assignments to 0 (no row assigned yet)
+	for i in range(0, nqueens): # set all row assignments to 0 (no row assigned yet)
 		assignment.update({i: 0})
 
 	for i in range(0, nqueens): # find and set constraints for each pair of queens
@@ -23,7 +29,7 @@ def CSPCallFunction(nqueens):
 	csp = CSP(doms, cons, assignment)
 	return csp
 
-def set_constraints(q1, q2, nqueens): # q2 represents the columns # This Can move to FCSolver Later 
+def set_constraints(q1, q2, nqueens): # q2 represents the columns # This Can move to FCSolver Later
 	row2 = 0
 	dcol = abs(q1 - q2)
 	ListOfConstraints = []
@@ -33,11 +39,3 @@ def set_constraints(q1, q2, nqueens): # q2 represents the columns # This Can mov
 			if row1 != row2 and q1 != q2 and drow != dcol:
 				ListOfConstraints.append([row1, row2])
 	return ListOfConstraints
-
-csp = CSPCallFunction(6)
-print(csp.doms)
-
-for i in csp.cons:
-    print(i)
-    print(csp.cons[i])
-#print(csp.cons)

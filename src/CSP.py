@@ -5,11 +5,19 @@ class CSP: # full csp with variabless, domain, and constraints
 		self.cons = cons       # lisf of lists mapping queen to list of constraints (first item in list if the pair of queens)
 		self.assignment = assignment       # the row the queen is assigned to
 
-	def assign(self, key, integer):
-		self.assignment[key] = integer
+	def assign(self, key, Variable):
+		self.assignment[key] = Variable
 
 	def unassign(self, integer):
-		self.assignment[key] = integer
+		self.assignment[key] = Variable
+
+	def getNextUnassignedVariable(self):
+		for i in range(len(self.assignment)):
+			if self.assignment[i]==0:
+				return i
+
+	def getValFromDomain(self, Variable):
+		return (self.doms[Variable][0])
 
 def CSPCallFunction(nqueens):
 	doms = {}    # domains of the queens

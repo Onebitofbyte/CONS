@@ -1,23 +1,27 @@
 
 class CSP: # full csp with variabless, domain, and constraints
-	def __init__(self, doms, cons, assignment):
+	def __init__(self, doms, cons, assignment, nqueens):
 		self.doms = doms       # dict mapping queen to its domain, the domain is all the possible assignment it can be placed in
 		self.cons = cons       # lisf of lists mapping queen to list of constraints (first item in list if the pair of queens)
 		self.assignment = assignment       # the row the queen is assigned to
+		self.nqueens = nqueens
+	def assign(self, Variable, Value):
+		self.assignment[Variable] = Value
 
-	def assign(self, key, Variable):
-		self.assignment[key] = Variable
+	def unassign(self, Variable):
+		self.assignment[Variable] = None
 
-	def unassign(self, integer):
-		self.assignment[key] = Variable
+	def deleteValue(self, Variable, Value):
+		self.doms[Variable].remove(Value)
 
-	def getNextUnassignedVariable(self):
-		for i in range(len(self.assignment)):
-			if self.assignment[i]==0:
-				return i
+	def restoreValue(self, Variable, Value):
+		self.doms[Variable].add(Value)
+
+	def getNextUnassignedVariable(self, varList):
+		return varList[0]
 
 	def getValFromDomain(self, Variable):
-		return (self.doms[Variable][0])
+		return (self.doms[0][0])
 
 def CSPCallFunction(nqueens):
 	doms = {}    # domains of the queens
@@ -28,13 +32,13 @@ def CSPCallFunction(nqueens):
 	for i in range(0, nqueens): # set list of domains for each queen
 		doms.update({i : [x for x in range(0,nqueens)]})
 	for i in range(0, nqueens): # set all row assignments to 0 (no row assigned yet)
-		assignment.update({i: 0})
+		assignment.update({i: None})
 
 	for i in range(0, nqueens): # find and set constraints for each pair of queens
 		for j in range(i, nqueens):
 			if i != j:
 				cons.update({(i,j) : set_constraints(i,j, nqueens)})
-	csp = CSP(doms, cons, assignment)
+	csp = CSP(doms, cons, assignment, nqueens)
 	return csp
 
 def set_constraints(q1, q2, nqueens): # q2 represents the columns # This Can move to FCSolver Later

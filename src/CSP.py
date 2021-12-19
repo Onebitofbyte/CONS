@@ -5,6 +5,7 @@ class CSP: # full csp with variabless, domain, and constraints
 		self.cons = cons       # lisf of lists mapping queen to list of constraints (first item in list if the pair of queens)
 		self.assignment = assignment       # the row the queen is assigned to
 		self.nqueens = nqueens
+
 	def assign(self, Variable, Value):
 		self.assignment[Variable] = Value
 
@@ -15,13 +16,16 @@ class CSP: # full csp with variabless, domain, and constraints
 		self.doms[Variable].remove(Value)
 
 	def restoreValue(self, Variable, Value):
-		self.doms[Variable].add(Value)
+		self.doms[Variable].append(Value)
+		self.doms[Variable].sort()
 
 	def getNextUnassignedVariable(self, varList):
-		return varList[0]
+		for i in range(len(self.assignment)):
+			if self.assignment[i] == None:
+				return i
 
 	def getValFromDomain(self, Variable):
-		return (self.doms[0][0])
+		return (self.doms[Variable][0])
 
 def CSPCallFunction(nqueens):
 	doms = {}    # domains of the queens

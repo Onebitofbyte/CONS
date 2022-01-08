@@ -3,14 +3,10 @@ from copy import copy, deepcopy
 import time
 import sys
 
-
-
-
 def FCSolver(csp, varList):
 # Method that performs 2-way forward checking to solve a given N-Queens CSP
 # Parameters (CSP, VarList)
 # Returns: None
-	print("Assignment = :" +str(csp.assignment))
 	if csp.assignment[csp.nqueens-1]!=None:
 		print("Our Solution Assignments : "+str(csp.assignment))
 		sys.exit()

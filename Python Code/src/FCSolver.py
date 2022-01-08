@@ -28,7 +28,6 @@ def PruneThisVariable(csp, Variable, Assignment):
 
 def FCBranchLeft(csp, varList, Variable, Value):
 	print("Left Branch now Q"+str(Variable)+"="+str(Value))
-	dont=True
 	thisLevel = deepcopy(csp)
 	kept_domains = deepcopy(csp.doms)
 	csp.assign(Variable, Value)

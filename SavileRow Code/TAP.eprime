@@ -12,10 +12,9 @@ given Bids: matrix indexed by [int(1..NumberofPeople),int(1..NumberOfTask)] of b
 
 find Allocation: matrix indexed by [int(1..NumberofPeople),int(1..NumberOfTask)] of bool
 find cost:int(1..10)
-minimising cost
+minimising cost*cost
 
 such that
-
 
 
 $There is one task for each person
@@ -25,10 +24,12 @@ forall i : int(1..NumberOfTask).
 forall i : int(1..NumberOfPeople).
 	sum([Duration[j]*Allocation[i,j]| j: int(1..NumberOfTask)])<=Deadline,
 
-forall k : int(1..10).
-	forall i :int(1..NumberOfPeople).
-		cost = sum([(Allocation[i,j]*Bids[i,j])**2|j:int(1..NumberOfTask)])
-		
+cost = sum i : int(1..NumberOfPeople).
+sum j : int(1..NumberOfTask). (Allocation[i,j]!=Bids[i,j]) /\ Allocation[i,j] = true
+ 
+$cost = sum([(Allocation[i,j]*(Bids[i,j]))**2|$j:int(1..NumberOfTask),i:int(1..NumberOfPeople)])
+
+
 
 	
 		

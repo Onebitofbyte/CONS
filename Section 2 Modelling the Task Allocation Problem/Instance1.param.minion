@@ -1,0 +1,74 @@
+MINION 3
+# CSETopLevel_number = 0
+# CSETopLevel_eliminated_expressions = 0
+# CSETopLevel_total_size = 0
+# CSE_active_number = 0
+# CSE_active_eliminated_expressions = 0
+# CSE_active_total_size = 0
+**VARIABLES**
+BOOL Allocation_00001_00001 #
+BOOL Allocation_00001_00002 #
+BOOL Allocation_00001_00003 #
+BOOL Allocation_00001_00004 #
+BOOL Allocation_00002_00001 #
+BOOL Allocation_00002_00002 #
+BOOL Allocation_00002_00003 #
+BOOL Allocation_00002_00004 #
+BOOL Allocation_00003_00001 #
+BOOL Allocation_00003_00002 #
+BOOL Allocation_00003_00003 #
+BOOL Allocation_00003_00004 #
+DISCRETE cost #
+{1..4}
+DISCRETE aux0 #(cost * cost)
+{1..16}
+**CONSTRAINTS**
+w-inintervalset(aux0, [1,4,6,6,8,9,12,12,16,16])
+**VARIABLES**
+BOOL aux1 #((false != Allocation_00003_00001) /\ Allocation_00003_00001)
+BOOL aux2 #((false != Allocation_00003_00003) /\ Allocation_00003_00003)
+BOOL aux5 #((false != Allocation_00002_00004) /\ Allocation_00002_00004)
+BOOL aux8 #((false != Allocation_00001_00002) /\ Allocation_00001_00002)
+BOOL aux9 #((false != Allocation_00001_00004) /\ Allocation_00001_00004)
+**TUPLELIST**
+Bids 3 4
+1 0 1 0 
+1 1 1 0 
+0 1 0 1 
+**VARIABLES**
+ALIAS Bids[3,4]=[[1, 0, 1, 0], [1, 1, 1, 0], [0, 1, 0, 1]]
+**VARIABLES**
+ALIAS Duration[4]=[20, 30, 35, 22]
+**SEARCH**
+PRINT[[Allocation_00001_00001],[Allocation_00001_00002],[Allocation_00001_00003],[Allocation_00001_00004],[Allocation_00002_00001],[Allocation_00002_00002],[Allocation_00002_00003],[Allocation_00002_00004],[Allocation_00003_00001],[Allocation_00003_00002],[Allocation_00003_00003],[Allocation_00003_00004],[cost],[aux0]]
+MINIMISING aux0
+VARORDER STATIC [Allocation_00001_00001, Allocation_00001_00002, Allocation_00001_00003, Allocation_00001_00004, Allocation_00002_00001, Allocation_00002_00002, Allocation_00002_00003, Allocation_00002_00004, Allocation_00003_00001, Allocation_00003_00002, Allocation_00003_00003, Allocation_00003_00004, cost]
+VARORDER STATIC [Allocation_00001_00001,Allocation_00001_00002,Allocation_00001_00003,Allocation_00001_00004,Allocation_00002_00001,Allocation_00002_00002,Allocation_00002_00003,Allocation_00002_00004,Allocation_00003_00001,Allocation_00003_00002,Allocation_00003_00003,Allocation_00003_00004,cost,aux0,aux1,aux2,aux5,aux8,aux9]
+**CONSTRAINTS**
+reify(watched-and({diseq(0,Allocation_00003_00001),w-literal(Allocation_00003_00001,1)}), aux1)
+reify(watched-and({diseq(0,Allocation_00003_00003),w-literal(Allocation_00003_00003,1)}), aux2)
+reify(watched-and({diseq(1,Allocation_00001_00001),w-literal(Allocation_00001_00001,1)}), 0)
+reify(watched-and({diseq(1,Allocation_00001_00003),w-literal(Allocation_00001_00003,1)}), 0)
+reify(watched-and({diseq(0,Allocation_00002_00004),w-literal(Allocation_00002_00004,1)}), aux5)
+reify(watched-and({diseq(1,Allocation_00003_00002),w-literal(Allocation_00003_00002,1)}), 0)
+reify(watched-and({diseq(1,Allocation_00003_00004),w-literal(Allocation_00003_00004,1)}), 0)
+reify(watched-and({diseq(0,Allocation_00001_00002),w-literal(Allocation_00001_00002,1)}), aux8)
+reify(watched-and({diseq(0,Allocation_00001_00004),w-literal(Allocation_00001_00004,1)}), aux9)
+reify(watched-and({diseq(1,Allocation_00002_00001),w-literal(Allocation_00002_00001,1)}), 0)
+reify(watched-and({diseq(1,Allocation_00002_00002),w-literal(Allocation_00002_00002,1)}), 0)
+reify(watched-and({diseq(1,Allocation_00002_00003),w-literal(Allocation_00002_00003,1)}), 0)
+product(cost, cost, aux0)
+weightedsumleq([20,30,35,22],[Allocation_00002_00001,Allocation_00002_00002,Allocation_00002_00003,Allocation_00002_00004],50)
+weightedsumleq([20,30,35,22],[Allocation_00001_00001,Allocation_00001_00002,Allocation_00001_00003,Allocation_00001_00004],50)
+weightedsumleq([20,30,35,22],[Allocation_00003_00001,Allocation_00003_00002,Allocation_00003_00003,Allocation_00003_00004],50)
+sumleq([Allocation_00001_00001,Allocation_00002_00001,Allocation_00003_00001],1)
+sumgeq([Allocation_00001_00001,Allocation_00002_00001,Allocation_00003_00001],1)
+sumleq([Allocation_00001_00002,Allocation_00002_00002,Allocation_00003_00002],1)
+sumgeq([Allocation_00001_00002,Allocation_00002_00002,Allocation_00003_00002],1)
+sumleq([Allocation_00001_00003,Allocation_00002_00003,Allocation_00003_00003],1)
+sumgeq([Allocation_00001_00003,Allocation_00002_00003,Allocation_00003_00003],1)
+sumleq([Allocation_00001_00004,Allocation_00002_00004,Allocation_00003_00004],1)
+sumgeq([Allocation_00001_00004,Allocation_00002_00004,Allocation_00003_00004],1)
+sumleq([aux1,aux2,aux5,aux8,aux9],cost)
+sumgeq([aux1,aux2,aux5,aux8,aux9],cost)
+**EOF**

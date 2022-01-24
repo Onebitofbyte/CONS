@@ -31,8 +31,6 @@ def CSPCallFunction(nqueens):
 	doms = {}    # domains of the queens
 	assignment = {}    # roassignment the queens will be placed in
 	cons = {}    # list of constraints for each queen
-
-
 	for i in range(0, nqueens): # set list of domains for each queen
 		doms.update({i : [x for x in range(0,nqueens)]})
 	for i in range(0, nqueens): # set all row assignments to 0 (no row assigned yet)
@@ -45,7 +43,7 @@ def CSPCallFunction(nqueens):
 	csp = CSP(doms, cons, assignment, nqueens)
 	return csp
 
-def set_constraints(q1, q2, nqueens): # q2 represents the columns # This Can move to FCSolver Later
+def set_constraints(q1, q2, nqueens): # Sets the constraints between two queens
 	row2 = 0
 	dcol = abs(q1 - q2)
 	ListOfConstraints = []

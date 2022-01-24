@@ -1,6 +1,5 @@
 from CSP import CSPCallFunction
 from copy import copy, deepcopy
-import time
 import sys
 
 def FCSolver(csp, varList):
@@ -12,7 +11,6 @@ def FCSolver(csp, varList):
 		sys.exit()
 	Variable = csp.getNextUnassignedVariable(varList)
 	Value = csp.getValFromDomain(Variable)
-
 	FCBranchLeft(csp, varList, Variable, Value) # Left Branch for equality (=) prune
 	FCBranchRight(csp, varList, Variable, Value) # Right Branch for not equal (≠) prune
 
@@ -95,10 +93,10 @@ def revise(csp, q1, q2):
 		for Constraint in cons:
 			if (i == Constraint[0]) and (i not in new_d1):
 				if (Constraint not in applied_constraints_d1):
-					applied_constraints_d1.append(Constraint)
+					applied_constraints_d1.append(Constraint) # Checks all constraint still connected to the first queen
 	for Constraint in applied_constraints_d1:
-		if (Constraint[1] in d2) and (Constraint[0] in d1):
-			if (Constraint[0] not in new_d1):
+		if (Constraint[1] in d2) and (Constraint[0] in d1): # Checks if secound queen is connected
+			if (Constraint[0] not in new_d1): # Creates the new domains
 				new_d1.append(Constraint[0])
 			if (Constraint[1] not in new_d2):
 				new_d2.append(Constraint[1])

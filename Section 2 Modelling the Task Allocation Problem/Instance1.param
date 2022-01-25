@@ -1,9 +1,0 @@
-language ESSENCE' 1.0
-
-letting NumberOfPeople be 3
-letting NumberOfTask be 4
-letting Deadline be 50
-letting Duration be [20,30,35,22]
-letting Bids be [[true,false,true,false],[true,true,true,false],[false,true,false,true]]
-
-

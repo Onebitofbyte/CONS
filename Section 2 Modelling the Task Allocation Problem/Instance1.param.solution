@@ -1,0 +1,9 @@
+language ESSENCE' 1.0
+$ Minion SolverNodes: 12
+$ Minion SolverTotalTime: 0
+$ Minion SolverTimeOut: 0
+$ Savile Row TotalTime: 0.393
+letting Allocation be [[false, false, true, false], 
+[true, true, false, false], 
+[false, false, false, true]]
+letting cost be 0
